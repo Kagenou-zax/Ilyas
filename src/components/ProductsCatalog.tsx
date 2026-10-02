@@ -229,6 +229,12 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
                 <img
                   src={product.image}
                   alt={product.name}
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) => {
+                    // Graceful fallback to verified studio setup photo if network glitch occurs
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1000&q=80';
+                  }}
                   className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />

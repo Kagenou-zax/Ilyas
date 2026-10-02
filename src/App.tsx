@@ -15,11 +15,8 @@ import { MessageCircle, Phone, ArrowUpRight, Sparkles } from 'lucide-react';
 export default function App() {
   const [activeModalItem, setActiveModalItem] = useState<ShowcaseItem | Product | null>(null);
 
-  // IntersectionObserver for scroll-reveal animations matching reference
+  // High-performance IntersectionObserver & MutationObserver for buttery-smooth scroll reveals
   useEffect(() => {
-    const revealElements = document.querySelectorAll('[data-reveal]');
-    if (!revealElements.length) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -30,15 +27,36 @@ export default function App() {
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08,
+        rootMargin: '0px 0px 80px 0px',
       }
     );
 
-    revealElements.forEach((el) => observer.observe(el));
+    const observeAll = () => {
+      document.querySelectorAll('[data-reveal]:not(.reveal-visible)').forEach((el) => {
+        observer.observe(el);
+      });
+    };
+
+    observeAll();
+
+    const mutationObserver = new MutationObserver(() => {
+      observeAll();
+    });
+
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    // Fallback timer: ensure all elements become visible even if scrolling or device is constrained
+    const safetyTimer = setTimeout(() => {
+      document.querySelectorAll('[data-reveal]:not(.reveal-visible)').forEach((el) => {
+        el.classList.add('reveal-visible');
+      });
+    }, 1500);
 
     return () => {
-      revealElements.forEach((el) => observer.unobserve(el));
+      clearTimeout(safetyTimer);
+      observer.disconnect();
+      mutationObserver.disconnect();
     };
   }, []);
 

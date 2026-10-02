@@ -71,6 +71,10 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
             <img
               src={image}
               alt={title}
+              decoding="async"
+              onError={(e) => {
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1200&q=80';
+              }}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />

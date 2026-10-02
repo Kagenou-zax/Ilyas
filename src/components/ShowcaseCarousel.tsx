@@ -203,6 +203,12 @@ export const ShowcaseCarousel: React.FC<ShowcaseCarouselProps> = ({ onOpenLightb
                 <img
                   src={item.image}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) => {
+                    // Graceful fallback to studio walnut image if network blip occurs
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1200&q=80';
+                  }}
                   style={{
                     filter: isCenter ? 'brightness(100%) contrast(100%)' : 'brightness(55%) contrast(85%)',
                     transition: 'filter 0.5s ease',

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Phone, MapPin, Send, ArrowUpRight, Sparkles, CheckCircle2, Globe, Copy, Check } from 'lucide-react';
+import { MessageCircle, Phone, MapPin, Send, ArrowUpRight, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const [name, setName] = useState('');
@@ -8,13 +8,6 @@ export const ContactSection: React.FC = () => {
   const [preferredHub, setPreferredHub] = useState('Abeokuta (FUNAAB)');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [copiedDomain, setCopiedDomain] = useState(false);
-
-  const handleCopyStoreUrl = () => {
-    navigator.clipboard.writeText('https://swavygadget.store');
-    setCopiedDomain(true);
-    setTimeout(() => setCopiedDomain(false), 2000);
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +19,7 @@ export const ContactSection: React.FC = () => {
 📍 *Preferred Hub:* ${preferredHub}
 💬 *Message:* ${message || 'I would like to place an order or make inquiries.'}
 ━━━━━━━━━━━━━━━━━━━━━━
-Sent via Official Store (swavygadget.store)`;
+Sent via Swavy Gadget Web Hub`;
 
     const url = `https://wa.me/2349063192326?text=${encodeURIComponent(payload)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -107,36 +100,6 @@ Sent via Official Store (swavygadget.store)`;
                     <ArrowUpRight size={16} />
                   </div>
                 </a>
-
-                {/* Official Web Store Card */}
-                <div
-                  id="contact-channel-store-domain"
-                  className="bg-white border-2 border-black rounded-2xl p-4 sm:p-5 flex items-center justify-between hover-glow shadow-sm transition-all"
-                >
-                  <div className="flex items-center gap-3.5 min-w-0">
-                    <div className="w-12 h-12 rounded-xl bg-[#0f172a] text-[#38bdf8] flex items-center justify-center border-2 border-black shadow-2xs shrink-0">
-                      <Globe size={22} />
-                    </div>
-                    <div className="min-w-0">
-                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-500 block">
-                        OFFICIAL DIGITAL STOREFRONT
-                      </span>
-                      <span className="text-base sm:text-lg font-mono font-black text-[#0f172a] truncate block">
-                        swavygadget.store
-                      </span>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleCopyStoreUrl}
-                    id="contact-copy-domain-btn"
-                    className="py-2 px-3 rounded-xl bg-neutral-100 hover:bg-black hover:text-white text-xs font-mono font-bold border border-black/15 transition-all flex items-center gap-1.5 cursor-pointer shrink-0 active:scale-95"
-                    title="Copy store URL"
-                  >
-                    {copiedDomain ? <Check size={14} className="text-green-600" /> : <Copy size={14} />}
-                    <span>{copiedDomain ? 'Copied' : 'Copy'}</span>
-                  </button>
-                </div>
 
                 {/* Location Summaries */}
                 <div id="contact-locations-summary" className="bg-[#f8fafc] border-2 border-black rounded-2xl p-4 space-y-3">

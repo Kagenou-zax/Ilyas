@@ -64,7 +64,7 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     title: '3-in-1 CNC Aluminum Fast MagSafe Charging Station',
     category: 'Charging & Docks',
     subtitle: 'Simultaneous 15W MagSafe for iPhone, Apple Watch Ultra, and AirPods Pro',
-    image: 'https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1200&q=80',
     priceTag: '₦34,000',
     specs: ['15W True Qi2 Fast Charge', 'Solid Space Grey Aluminum', 'Weighted Anti-Slip Base', 'Hidden Cable Routing']
   },
@@ -203,7 +203,7 @@ export const ALL_PRODUCTS: Product[] = [
     categoryLabel: 'CHARGING & DOCKS',
     price: 34000,
     originalPrice: 40000,
-    image: 'https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1000&q=80',
     shortDesc: 'Weighted magnetic dock for Phone, Apple Watch, and Earbuds.',
     fullDesc: 'Clean single-cable solution for your nightstand or desktop. Precision CNC machined metal chassis with strong N52 neodymium magnets for snap-on portrait or landscape StandBy mode.',
     features: ['15W Fast Wireless Output', 'Weighted Anti-Slip Base', 'Apple StandBy Mode Ready', 'Overheat & Surge Protection'],

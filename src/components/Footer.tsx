@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
-import { ArrowUp, Sparkles, SlidersHorizontal, MapPin, Phone, MessageCircle, Globe, Copy, Check, ArrowUpRight } from 'lucide-react';
+import React from 'react';
+import { ArrowUp, SlidersHorizontal, MapPin, Phone, MessageCircle } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const [copied, setCopied] = useState(false);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleCopyUrl = () => {
-    navigator.clipboard.writeText('https://swavygadget.store');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -40,45 +32,6 @@ export const Footer: React.FC = () => {
             >
               <ArrowUp size={20} className="stroke-[2.5]" />
             </button>
-          </div>
-        </div>
-
-        {/* Official Store Custom Domain Banner */}
-        <div className="bg-white/5 border border-white/10 rounded-3xl p-4 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-10">
-          <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-2xl bg-[#2563eb] text-white flex items-center justify-center border border-white/20 shadow-sm shrink-0">
-              <Globe size={22} />
-            </div>
-            <div>
-              <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#38bdf8] font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-ping" />
-                <span>Official Digital Storefront</span>
-              </div>
-              <div className="text-xl sm:text-2xl font-mono font-bold text-white tracking-wide">
-                swavygadget.store
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <button
-              type="button"
-              id="footer-copy-url-btn"
-              onClick={handleCopyUrl}
-              className="py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white hover:text-black text-white text-xs font-mono font-bold border border-white/20 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95 grow md:grow-0"
-            >
-              {copied ? <Check size={14} className="text-[#25D366]" /> : <Copy size={14} />}
-              <span>{copied ? 'Copied Store URL!' : 'Copy Store URL'}</span>
-            </button>
-            <a
-              href="https://swavygadget.store"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-2.5 px-4 rounded-xl bg-[#2563eb] hover:bg-white hover:text-black text-white text-xs font-mono font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 shrink-0"
-            >
-              <span>Visit</span>
-              <ArrowUpRight size={14} />
-            </a>
           </div>
         </div>
 

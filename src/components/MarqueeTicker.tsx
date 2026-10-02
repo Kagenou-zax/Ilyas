@@ -1,10 +1,9 @@
 import React from 'react';
-import { Sparkles, Monitor, Keyboard, Zap, MapPin, Phone, Globe } from 'lucide-react';
+import { Sparkles, Monitor, Keyboard, Zap, MapPin, Phone } from 'lucide-react';
 
 export const MarqueeTicker: React.FC = () => {
   const items = [
     { label: 'SWAVY GADGET', icon: Sparkles },
-    { label: 'SWAVYGADGET.STORE', icon: Globe },
     { label: 'MINIMALIST DESKTOP SETUPS', icon: Monitor },
     { label: 'HIGH-QUALITY TECH ACCESSORIES', icon: Zap },
     { label: 'LALUBU STREET, ABEOKUTA (FUNAAB)', icon: MapPin },

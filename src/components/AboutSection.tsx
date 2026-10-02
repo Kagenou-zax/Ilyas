@@ -69,6 +69,8 @@ export const AboutSection: React.FC = () => {
                 <img
                   src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80"
                   alt="Swavy Gadget Desktop Aesthetics"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
@@ -139,6 +141,8 @@ export const AboutSection: React.FC = () => {
                   <img
                     src="https://images.unsplash.com/photo-1616440347437-b1c73416efc2?auto=format&fit=crop&w=600&q=80"
                     alt="Desk mat and minimalist setup"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>

@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import { Menu, X, ArrowUpRight, Smartphone, MapPin, Sparkles, SlidersHorizontal, Globe, Copy, Check } from 'lucide-react';
+import { Menu, X, ArrowUpRight, SlidersHorizontal, MapPin, Sparkles, Smartphone } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyDomain = () => {
-    navigator.clipboard.writeText('https://swavygadget.store');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <>
@@ -71,9 +64,9 @@ export const Header: React.FC = () => {
 
         {/* Right Action Button & Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          <div className="hidden lg:flex items-center gap-1.5 bg-black/5 hover:bg-black/10 border border-black/10 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold text-slate-700 transition-colors">
-            <Globe size={13} className="text-[#2563eb]" />
-            <span>swavygadget.store</span>
+          <div className="hidden lg:flex items-center gap-1.5 bg-black/5 border border-black/10 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold text-slate-700">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
+            <span>ABEOKUTA & LAGOS HUBS</span>
           </div>
 
           <a
@@ -132,25 +125,18 @@ export const Header: React.FC = () => {
               </button>
             </div>
 
-            {/* Custom Domain Bar in Mobile Drawer */}
+            {/* Physical Hubs Badge in Mobile Drawer */}
             <div className="p-2.5 sm:p-3 bg-neutral-100 rounded-2xl border border-black/10 flex items-center justify-between my-1">
               <div className="flex items-center gap-2 min-w-0">
-                <Globe size={16} className="text-[#2563eb] shrink-0" />
+                <MapPin size={16} className="text-[#2563eb] shrink-0" />
                 <div className="min-w-0">
-                  <div className="text-[9px] font-mono uppercase text-slate-500 font-bold truncate">Official Web Store</div>
-                  <div className="text-xs font-mono font-bold text-[#0f172a] truncate">swavygadget.store</div>
+                  <div className="text-[9px] font-mono uppercase text-slate-500 font-bold truncate">Physical Hubs</div>
+                  <div className="text-xs font-mono font-bold text-[#0f172a] truncate">Abeokuta & Lagos</div>
                 </div>
               </div>
-              <button
-                type="button"
-                id="mobile-copy-store-url"
-                onClick={handleCopyDomain}
-                className="py-1.5 px-2.5 rounded-lg bg-white hover:bg-black hover:text-white text-[11px] font-mono font-bold border border-black/15 shadow-2xs transition-colors flex items-center gap-1 cursor-pointer shrink-0"
-                title="Copy web address"
-              >
-                {copied ? <Check size={12} className="text-green-600" /> : <Copy size={12} />}
-                <span>{copied ? 'Copied' : 'Copy'}</span>
-              </button>
+              <span className="text-[10px] font-mono font-bold text-[#2563eb] bg-[#2563eb]/10 px-2 py-0.5 rounded-md border border-[#2563eb]/20 shrink-0">
+                Open Daily
+              </span>
             </div>
 
             <a

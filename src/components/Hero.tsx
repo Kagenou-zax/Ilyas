@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnalogClock } from './AnalogClock';
-import { ArrowUpRight, Sparkles, Monitor, Keyboard, MousePointer, ShieldCheck, ChevronRight, Globe } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Monitor, Keyboard, MousePointer, ShieldCheck, ChevronRight } from 'lucide-react';
 
 interface HeroProps {
   onExploreClick?: () => void;
@@ -57,8 +57,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onSelectProduct }) =
                 <span>Ergonomic Setup</span>
                 <span className="text-[#2563eb]">•</span>
                 <span className="inline-flex items-center gap-1 text-[#2563eb] font-mono font-bold bg-[#2563eb]/10 px-2 py-0.5 rounded-md border border-[#2563eb]/20 text-[10px] sm:text-[11px] tracking-normal">
-                  <Globe size={11} />
-                  <span>swavygadget.store</span>
+                  <Sparkles size={11} />
+                  <span>Original Studio Gear</span>
                 </span>
               </div>
 
@@ -91,6 +91,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onSelectProduct }) =
                   <img
                     src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1200&q=80"
                     alt="Swavy Gadget Minimalist Walnut Desktop Workspace"
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
@@ -149,6 +151,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onSelectProduct }) =
                   <img
                     src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1000&q=80"
                     alt="Custom Low-Profile Mechanical Keyboard"
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent pointer-events-none" />

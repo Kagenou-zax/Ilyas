@@ -1,6 +1,6 @@
 {
   "name": "Swavy Gadget",
-  "description": "High-quality tech accessories and minimalist desktop setups based in Abeokuta (FUNAAB) and Computer Village, Lagos. Visit the official store at swavygadget.store.",
+  "description": "High-quality tech accessories and minimalist desktop setups based in Abeokuta (FUNAAB) and Computer Village, Lagos.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
