@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ALL_PRODUCTS } from '../data/products';
-import { Product } from '../types';
-import { ArrowUpRight, Check, ShoppingBag, Eye, Sparkles, SlidersHorizontal, MapPin, Search, X } from 'lucide-react';
+import { Product, GadgetCategory } from '../types';
+import { ArrowUpRight, Check, Eye, Sparkles, MapPin, Search, X, MessageCircle, SlidersHorizontal, ShieldCheck } from 'lucide-react';
 
 interface ProductsCatalogProps {
   onSelectProduct: (product: Product) => void;
@@ -11,14 +11,15 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedHub, setSelectedHub] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc'>('featured');
+  const [sortBy, setSortBy] = useState<'featured' | 'name' | 'condition'>('featured');
 
   const categories = [
-    { id: 'all', label: 'All Catalog' },
-    { id: 'setups', label: 'Minimalist Setups' },
-    { id: 'keyboards', label: 'Keyboards & Mice' },
-    { id: 'charging', label: 'Charging & Docks' },
-    { id: 'accessories', label: 'Tech Accessories' },
+    { id: 'all', label: 'All Gadgets' },
+    { id: 'iphones', label: 'iPhones (Direct UK)' },
+    { id: 'samsung', label: 'Samsung Galaxy' },
+    { id: 'laptops', label: 'Laptops' },
+    { id: 'gaming', label: 'Gaming (PS5)' },
+    { id: 'gadgets', label: 'iPads & Watches' },
   ];
 
   const filteredProducts = ALL_PRODUCTS.filter((product) => {
@@ -31,21 +32,18 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
       !searchQuery.trim() ||
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.specsSummary.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase());
     return matchCategory && matchHub && matchSearch;
   }).sort((a, b) => {
-    if (sortBy === 'price-asc') return a.price - b.price;
-    if (sortBy === 'price-desc') return b.price - a.price;
-    return 0;
+    if (sortBy === 'name') return a.name.localeCompare(b.name);
+    if (sortBy === 'condition') return a.condition.localeCompare(b.condition);
+    return 0; // featured default
   });
 
-  const formatNaira = (amount: number) => {
-    return `₦${amount.toLocaleString('en-NG')}`;
-  };
-
-  const getWhatsAppOrderUrl = (product: Product) => {
+  const getWhatsAppNegotiateUrl = (product: Product) => {
     const text = encodeURIComponent(
-      `Hello Swavy Gadget, I would like to order: "${product.name}" (${formatNaira(product.price)}). Is this currently in stock for pickup/dispatch?`
+      `Hello Swavy Gadget, I am interested in: "${product.name}" (${product.specsSummary}). I would like to discuss and negotiate the best price for pickup/dispatch.`
     );
     return `https://wa.me/2349063192326?text=${text}`;
   };
@@ -58,16 +56,16 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-[0.22em] mb-2.5">
               <span className="w-2.5 h-2.5 rounded-sm bg-[#2563eb] rotate-45 inline-block" />
-              <span>Inventory & Tech Accessories</span>
+              <span>Verified Tech Inventory</span>
               <span className="text-[#2563eb] font-black">/</span>
-              <span>Direct Supply</span>
+              <span>Direct UK & Brand New</span>
             </div>
 
             <h2 className="font-condensed text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#0f172a] uppercase leading-[0.88] tracking-tight">
               THE SWAVY CATALOGUE.
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl font-medium mt-2">
-              High-quality tech accessories and minimalist desktop architecture. Backed by local warranty and available for in-store pickup or nationwide dispatch.
+              All prices are discussed and negotiated directly with the business owner on WhatsApp for the best competitive deal. Tested stock with local warranty.
             </p>
           </div>
 
@@ -76,35 +74,31 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
             {/* Search Input */}
             <div className="relative flex items-center">
               <label htmlFor="catalog-search-input" className="sr-only">
-                Search gear and accessories
+                Search gadgets
               </label>
               <Search size={15} className="absolute left-3.5 text-neutral-400 pointer-events-none" />
               <input
                 id="catalog-search-input"
                 type="text"
-                placeholder="Search desk gear..."
+                placeholder="Search iPhone, PS5, laptop..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full sm:w-56 bg-white border-2 border-black rounded-2xl pl-9 pr-8 py-2 text-base sm:text-xs font-medium text-[#0f172a] placeholder-neutral-400 focus:outline-none focus:border-[#2563eb] shadow-xs"
+                className="w-full sm:w-60 bg-white border-2 border-black rounded-2xl pl-9 pr-8 py-2 text-base sm:text-xs font-medium text-[#0f172a] placeholder-neutral-400 focus:outline-none focus:border-[#2563eb] shadow-xs"
               />
               {searchQuery && (
                 <button
                   type="button"
-                  id="catalog-search-clear-btn"
                   onClick={() => setSearchQuery('')}
-                  aria-label="Clear search query"
-                  className="absolute right-2.5 p-1 text-neutral-400 hover:text-black cursor-pointer"
+                  aria-label="Clear search"
+                  className="absolute right-3 text-neutral-400 hover:text-black cursor-pointer p-0.5"
                 >
                   <X size={14} />
                 </button>
               )}
             </div>
 
-            {/* Hub Selector */}
-            <div className="flex items-center gap-1.5 bg-white border-2 border-black p-1.5 rounded-2xl shadow-sm self-start sm:self-auto overflow-x-auto max-w-full">
-              <span className="text-[10px] font-mono font-bold uppercase text-neutral-500 pl-2 pr-1 flex items-center gap-1 shrink-0">
-                <MapPin size={12} className="text-[#2563eb]" /> Hub:
-              </span>
+            {/* Hub Fast Toggle */}
+            <div className="flex items-center gap-1 bg-white border-2 border-black rounded-2xl p-1 shadow-xs">
               <button
                 type="button"
                 id="hub-filter-all"
@@ -162,8 +156,8 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
                 >
                   <span>{cat.label}</span>
                   <span
-                    className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
-                      isActive ? 'bg-[#2563eb] text-white' : 'bg-neutral-200 text-neutral-800'
+                    className={`font-mono text-[10px] px-2 py-0.5 rounded-full ${
+                      isActive ? 'bg-white text-black' : 'bg-neutral-100 text-neutral-600'
                     }`}
                   >
                     {count}
@@ -173,32 +167,35 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
             })}
           </div>
 
-          {/* Sort By Select */}
-          <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-            <span className="text-[11px] font-mono font-bold uppercase text-neutral-500">
+          {/* Sort Selector */}
+          <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
+            <span className="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider hidden sm:inline">
               Sort:
             </span>
             <select
               id="catalog-sort-select"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-white border-2 border-black rounded-xl px-3 py-2 text-base sm:text-xs font-bold text-[#0f172a] focus:outline-none focus:border-[#2563eb] cursor-pointer shadow-xs"
+              className="bg-white border-2 border-black rounded-xl px-3 py-2 text-xs font-mono font-bold text-[#0f172a] focus:outline-none focus:border-[#2563eb] cursor-pointer shadow-xs"
             >
-              <option value="featured">Featured Curated</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
+              <option value="featured">Featured / Hot Restock</option>
+              <option value="name">Model Name (A - Z)</option>
+              <option value="condition">Condition (Direct UK / Brand New)</option>
             </select>
           </div>
         </div>
 
-        {/* Empty State when no results */}
+        {/* Empty Search Feedback */}
         {filteredProducts.length === 0 && (
-          <div className="bg-white border-2 border-black rounded-3xl p-8 sm:p-12 text-center shadow-md my-6">
-            <p className="font-display-title font-bold text-lg text-[#0f172a] mb-2">
-              No products found matching "{searchQuery}"
-            </p>
+          <div className="py-16 text-center bg-white border-2 border-black rounded-3xl p-8 max-w-md mx-auto">
+            <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center mx-auto mb-3 text-neutral-400">
+              <Search size={22} />
+            </div>
+            <h3 className="font-display-title text-lg font-bold uppercase mb-1">
+              No Devices Found
+            </h3>
             <p className="text-xs sm:text-sm text-slate-500 mb-5">
-              Try searching for something else or clearing your filters.
+              Try searching for iPhone, S21, PS5, laptop or clear your filters.
             </p>
             <button
               type="button"
@@ -232,8 +229,7 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
                   loading="lazy"
                   decoding="async"
                   onError={(e) => {
-                    // Graceful fallback to verified studio setup photo if network glitch occurs
-                    e.currentTarget.src = 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1000&q=80';
+                    e.currentTarget.src = '/src/assets/images/swavy_store_phones_1791062288821.jpg';
                   }}
                   className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
                 />
@@ -268,30 +264,34 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
                   <span className="text-[10px] font-black uppercase tracking-widest font-display-title text-[#38bdf8]">
                     {product.categoryLabel}
                   </span>
-                  <div className="flex items-center gap-1 text-[9px] font-mono text-white/80">
+                  <div className="flex items-center gap-1 text-[9px] font-mono text-white/90">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]"></span>
-                    <span>READY FOR PICKUP</span>
+                    <span>{product.condition.toUpperCase()}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Product Details Content */}
+              {/* Product Details Content (NO Price Tag - Price Negotiated on WhatsApp) */}
               <div className="p-5 sm:p-6 flex flex-col justify-between grow">
                 <div>
-                  <div className="flex items-baseline justify-between gap-2 mb-2">
-                    <span className="font-mono text-xl sm:text-2xl font-black text-[#0f172a]">
-                      {formatNaira(product.price)}
+                  {/* WhatsApp Negotiation Callout replacing price tag */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-3 py-1 rounded-xl">
+                      <MessageCircle size={14} className="text-[#25D366] fill-[#25D366]" />
+                      <span>Negotiate on WhatsApp</span>
+                    </div>
+                    <span className="font-mono text-[10px] font-bold uppercase text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
+                      {product.condition}
                     </span>
-                    {product.originalPrice && (
-                      <span className="font-mono text-xs text-neutral-400 line-through">
-                        {formatNaira(product.originalPrice)}
-                      </span>
-                    )}
                   </div>
 
-                  <h3 className="font-bold text-base sm:text-lg text-[#0f172a] leading-snug mb-2 font-sans group-hover:text-[#2563eb] transition-colors">
+                  <h3 className="font-bold text-base sm:text-lg text-[#0f172a] leading-snug mb-1 font-sans group-hover:text-[#2563eb] transition-colors">
                     {product.name}
                   </h3>
+
+                  <div className="text-[11px] font-mono font-bold text-slate-500 mb-2">
+                    {product.specsSummary}
+                  </div>
 
                   <p className="text-xs text-slate-600 leading-relaxed mb-4 line-clamp-2">
                     {product.shortDesc}
@@ -310,7 +310,7 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
                   </ul>
                 </div>
 
-                {/* Availability & Actions */}
+                {/* Availability & Action Buttons */}
                 <div className="pt-4 border-t border-black/10 flex flex-col gap-3">
                   <div className="flex items-center gap-1 text-[10px] font-mono text-neutral-500">
                     <MapPin size={11} className="text-[#2563eb]" />
@@ -329,14 +329,16 @@ export const ProductsCatalog: React.FC<ProductsCatalogProps> = ({ onSelectProduc
                     </button>
 
                     <a
-                      href={getWhatsAppOrderUrl(product)}
+                      href={getWhatsAppNegotiateUrl(product)}
                       target="_blank"
                       rel="noopener noreferrer"
                       id={`product-order-wa-btn-${product.id}`}
-                      className="w-full min-h-[44px] py-2.5 px-3 rounded-2xl bg-[#25D366] hover:bg-black hover:text-white text-white border-2 border-black text-xs font-black uppercase tracking-wider shadow-sm transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
+                      className="w-full min-h-[44px] py-2.5 px-2.5 rounded-2xl bg-[#25D366] hover:bg-black text-black hover:text-white border-2 border-black text-xs font-black uppercase tracking-wider shadow-sm transition-all cursor-pointer flex items-center justify-center gap-1 active:scale-95 focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
+                      title="Negotiate and discuss price directly with owner on WhatsApp"
                     >
-                      <span>Order WA</span>
-                      <ArrowUpRight size={14} className="stroke-[3]" />
+                      <MessageCircle size={14} className="stroke-[2.5]" />
+                      <span>Negotiate</span>
+                      <ArrowUpRight size={13} className="stroke-[2.5]" />
                     </a>
                   </div>
                 </div>

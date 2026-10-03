@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { SHOWCASE_ITEMS } from '../data/products';
-import { ShowcaseItem } from '../types';
-import { ChevronLeft, ChevronRight, Play, Pause, Maximize2, Sparkles, Monitor, ArrowUpRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Maximize2, Sparkles, Monitor, ArrowUpRight, MessageCircle } from 'lucide-react';
 
 interface ShowcaseCarouselProps {
   onOpenLightbox: (item: ShowcaseItem) => void;
@@ -120,17 +119,14 @@ export const ShowcaseCarousel: React.FC<ShowcaseCarouselProps> = ({ onOpenLightb
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-[0.25em] mb-2.5">
               <span className="w-2.5 h-2.5 rounded-sm bg-[#2563eb] rotate-45 inline-block" />
-              <span>Showcase Exhibit</span>
+              <span>FLAGSHIP GADGETS SHOWCASE</span>
               <span className="text-[#2563eb] font-black">/</span>
-              <span>Minimalist Setups & Gear</span>
+              <span>Direct UK & Brand New</span>
             </div>
 
             <h2 className="font-condensed text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#0f172a] uppercase leading-[0.88] tracking-tight">
               <span className="inline-flex items-center gap-3 sm:gap-4 flex-wrap">
-                <span>DESKTOPS & GEAR SHOWCASE.</span>
-                <span className="bg-white border-2 border-black p-1.5 rounded-2xl shadow-sm -rotate-6 inline-flex items-center justify-center">
-                  <Monitor size={28} className="text-black" />
-                </span>
+                <span>VERIFIED STOCK SHOWCASE.</span>
               </span>
             </h2>
           </div>
@@ -218,7 +214,7 @@ export const ShowcaseCarousel: React.FC<ShowcaseCarouselProps> = ({ onOpenLightb
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
-                {/* Top Badge: Serial & Price */}
+                {/* Top Badge: Serial & Condition Badge (No Price Tag) */}
                 <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
                   <span
                     className={`font-mono text-xs font-black px-2.5 py-1 rounded-full border transition-all ${
@@ -227,11 +223,9 @@ export const ShowcaseCarousel: React.FC<ShowcaseCarouselProps> = ({ onOpenLightb
                   >
                     NO. {item.serial}
                   </span>
-                  {item.priceTag && (
-                    <span className="font-mono text-xs font-black px-2.5 py-1 rounded-full bg-[#2563eb] text-white border border-black shadow-xs">
-                      {item.priceTag}
-                    </span>
-                  )}
+                  <span className="font-mono text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-[#2563eb] text-white border border-black shadow-xs">
+                    {item.conditionBadge}
+                  </span>
                 </div>
 
                 {/* Center Card Zoom Icon */}

@@ -1,11 +1,13 @@
+export type GadgetCategory = 'iphones' | 'samsung' | 'laptops' | 'gaming' | 'gadgets';
+
 export interface Product {
   id: string;
   serial: string;
   name: string;
-  category: 'setups' | 'accessories' | 'keyboards' | 'charging' | 'audio';
+  category: GadgetCategory;
   categoryLabel: string;
-  price: number;
-  originalPrice?: number;
+  condition: 'Direct UK' | 'Brand New' | 'USA Used' | 'Refurbished Grade A';
+  specsSummary: string;
   image: string;
   shortDesc: string;
   fullDesc: string;
@@ -20,9 +22,9 @@ export interface ShowcaseItem {
   serial: string;
   title: string;
   category: string;
+  conditionBadge: string;
   subtitle: string;
   image: string;
-  priceTag?: string;
   specs: string[];
 }
 

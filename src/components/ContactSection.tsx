@@ -4,7 +4,7 @@ import { MessageCircle, Phone, MapPin, Send, ArrowUpRight, Sparkles, CheckCircle
 export const ContactSection: React.FC = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [interest, setInterest] = useState('Minimalist Desk Setup Consultation');
+  const [interest, setInterest] = useState('Direct UK iPhone 16 (128GB / 256GB)');
   const [preferredHub, setPreferredHub] = useState('Abeokuta (FUNAAB)');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);

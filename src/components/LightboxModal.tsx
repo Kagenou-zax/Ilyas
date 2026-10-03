@@ -24,20 +24,17 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
 
   if (!item) return null;
 
-  const isProduct = 'price' in item;
+  const isProduct = 'condition' in item;
   const title = isProduct ? item.name : item.title;
   const image = item.image;
   const category = isProduct ? item.categoryLabel : item.category;
   const serial = item.serial;
-  const priceDisplay = isProduct
-    ? `₦${item.price.toLocaleString('en-NG')}`
-    : item.priceTag || 'Inquire Price';
-
+  const conditionBadge = isProduct ? item.condition : item.conditionBadge;
   const specsList = isProduct ? item.features : item.specs;
   const desc = isProduct ? item.fullDesc : item.subtitle;
 
-  const whatsappUrl = `https://wa.me/2349063192326?text=${encodeURIComponent(
-    `Hello Swavy Gadget, I want to order/inquire about "${title}" (${priceDisplay}). Please confirm availability for pickup or dispatch.`
+  const whatsappNegotiateUrl = `https://wa.me/2349063192326?text=${encodeURIComponent(
+    `Hello Swavy Gadget, I want to discuss and negotiate the price for "${title}". Please confirm stock availability for pickup in Abeokuta/Lagos or dispatch.`
   )}`;
 
   return (
@@ -73,16 +70,19 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
               alt={title}
               decoding="async"
               onError={(e) => {
-                e.currentTarget.src = 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1200&q=80';
+                e.currentTarget.src = '/src/assets/images/swavy_store_phones_1791062288821.jpg';
               }}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />
 
-            {/* Top Serial Badge */}
-            <div className="absolute top-4 left-4 z-10">
+            {/* Top Serial Badge & Condition */}
+            <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
               <span className="font-mono text-xs font-black px-3 py-1 rounded-full bg-black/80 text-white border border-white/20">
                 NO. {serial}
+              </span>
+              <span className="font-mono text-xs font-black px-3 py-1 rounded-full bg-[#2563eb] text-white border border-black shadow-xs">
+                {conditionBadge}
               </span>
             </div>
 
@@ -90,7 +90,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
             <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-white">
               <div className="flex items-center gap-1.5 text-xs font-mono">
                 <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
-                <span>IN STOCK • ABE & LAGOS</span>
+                <span>IN STOCK • ABE & LAGOS HUBS</span>
               </div>
             </div>
           </div>
@@ -102,9 +102,10 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
                 <span className="text-[10px] font-black uppercase tracking-widest font-display-title text-[#2563eb]">
                   {category}
                 </span>
-                <span className="font-mono text-lg font-black text-[#0f172a]">
-                  {priceDisplay}
-                </span>
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-2.5 py-1 rounded-xl">
+                  <MessageCircle size={13} className="text-[#25D366] fill-[#25D366]" />
+                  <span>Price on WhatsApp</span>
+                </div>
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-[#0f172a] leading-snug mb-3 font-display-title">
@@ -118,7 +119,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
               {/* Specifications List */}
               <div className="mb-6">
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-500 block mb-2">
-                  KEY ARCHITECTURE & FEATURES:
+                  KEY HARDWARE SPECS & VERIFICATION:
                 </span>
                 <ul className="space-y-1.5">
                   {specsList.map((spec, idx) => (
@@ -141,14 +142,14 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
               </div>
 
               <a
-                href={whatsappUrl}
+                href={whatsappNegotiateUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                id="lightbox-wa-order-btn"
-                className="w-full min-h-[48px] py-3.5 px-5 rounded-2xl bg-[#25D366] hover:bg-black hover:text-white text-white border-2 border-black font-black text-xs uppercase tracking-wider shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95 focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
+                id="lightbox-wa-negotiate-btn"
+                className="w-full min-h-[48px] py-3.5 px-5 rounded-2xl bg-[#25D366] hover:bg-black text-black hover:text-white border-2 border-black font-black text-xs uppercase tracking-wider shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95 focus-visible:ring-2 focus-visible:ring-black focus-visible:outline-none"
               >
                 <MessageCircle size={16} />
-                <span>Order via WhatsApp Now</span>
+                <span>Negotiate Price On WhatsApp</span>
                 <ArrowUpRight size={14} className="stroke-[3]" />
               </a>
             </div>
