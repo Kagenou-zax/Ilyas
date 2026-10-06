@@ -40,3 +40,12 @@ export interface StoreLocation {
   hours: string;
   highlights: string[];
 }
+
+export interface SwavyShot {
+  id: string;
+  serial: string;
+  title: string;
+  filename: string;
+  image: string;
+  caption: string;
+}

@@ -1,18 +1,18 @@
 import React from 'react';
-import { Sparkles, Monitor, Keyboard, Zap, MapPin, Phone } from 'lucide-react';
+import { Sparkles, Monitor, Keyboard, Zap, MapPin, Phone, Camera, Smartphone } from 'lucide-react';
 
 export const MarqueeTicker: React.FC = () => {
   const items = [
     { label: 'SWAVY GADGET', icon: Sparkles },
-    { label: 'MINIMALIST DESKTOP SETUPS', icon: Monitor },
-    { label: 'HIGH-QUALITY TECH ACCESSORIES', icon: Zap },
+    { label: 'DIRECT UK SMARTPHONES & LAPTOPS', icon: Smartphone },
+    { label: 'SWAVY_SHOTS PHOTOGRAPHY ARCHIVE', icon: Camera },
     { label: 'LALUBU STREET, ABEOKUTA (FUNAAB)', icon: MapPin },
     { label: 'OTIGBA STREET, COMPUTER VILLAGE IKEJA', icon: MapPin },
     { label: 'WHATSAPP: 09063192326', icon: Phone },
     { label: 'CALL LINE: 08113841519', icon: Phone },
-    { label: 'CUSTOM MECHANICAL KEYBOARDS', icon: Keyboard },
-    { label: 'SOLID WALNUT DESK SHELVES', icon: Monitor },
-    { label: 'FAST NATIONWIDE DISPATCH', icon: Zap },
+    { label: 'NEGOTIATE DIRECTLY ON WHATSAPP', icon: Zap },
+    { label: 'PS5 SLIM & GAMING RIGS', icon: Zap },
+    { label: 'FAST NATIONWIDE DISPATCH', icon: Sparkles },
   ];
 
   return (

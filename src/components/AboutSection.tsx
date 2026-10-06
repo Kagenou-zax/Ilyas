@@ -250,15 +250,15 @@ export const AboutSection: React.FC = () => {
           <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 border-2 border-black shadow-lg relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 hover-glow">
             <div>
               <h3 className="font-condensed text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-[#0f172a] leading-none mb-2">
-                LET US BUILD YOUR DREAM DESKTOP SETUP.
+                TECH GADGETS & VISUAL STORYTELLING.
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 max-w-xl font-medium">
-                Whether you need a full ergonomic desk transformation, custom mechanical keyboard, or single GaN charger, Swavy Gadget delivers directly to your door.
+                Whether you need a pristine Direct UK iPhone, high-performance laptop, PS5 console, or an editorial photography shoot with Swavy_shots, we deliver genuine excellence across Abeokuta & Lagos.
               </p>
             </div>
 
             <a
-              href="https://wa.me/2349063192326?text=Hello%20Swavy%20Gadget%2C%20I%20want%20to%20consult%20on%20building%20a%20minimalist%20setup."
+              href="https://wa.me/2349063192326?text=Hello%20Swavy%20Gadget%2C%20I%20want%20to%20inquire%20about%20direct%20UK%20gadgets%20or%20Swavy_shots%20sessions."
               target="_blank"
               rel="noopener noreferrer"
               className="bg-black hover:bg-[#2563eb] hover:text-white text-white font-bold text-xs sm:text-sm uppercase tracking-wider px-6 sm:px-8 py-3.5 rounded-full flex items-center gap-2 shadow-md transition-all duration-200 shrink-0 active:scale-95 border-2 border-black cursor-pointer"

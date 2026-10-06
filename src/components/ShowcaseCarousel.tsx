@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { SHOWCASE_ITEMS } from '../data/products';
+import { ShowcaseItem } from '../types';
 import { ChevronLeft, ChevronRight, Play, Pause, Maximize2, Sparkles, Monitor, ArrowUpRight, MessageCircle } from 'lucide-react';
 
 interface ShowcaseCarouselProps {

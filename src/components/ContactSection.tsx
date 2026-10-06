@@ -46,7 +46,7 @@ Sent via Swavy Gadget Web Hub`;
               </h2>
 
               <p className="text-sm sm:text-base text-slate-600 max-w-lg font-medium mb-8 leading-relaxed">
-                Have questions regarding stock availability, custom mechanical keyboards, or building out an ergonomic workspace? Contact our dedicated lines directly or send a message below.
+                Have questions regarding stock availability, specific iPhone colors, laptop specs, or booking a photography shoot with Swavy? All prices are discussed and negotiated directly with the owner on WhatsApp for the best competitive deal.
               </p>
 
               {/* Direct Channel Cards */}
@@ -212,32 +212,47 @@ Sent via Swavy Gadget Web Hub`;
                     onChange={(e) => setInterest(e.target.value)}
                     className="w-full min-h-[44px] bg-[#f8fafc] border-2 border-black rounded-2xl px-4 py-3 text-base sm:text-sm text-[#0f172a] focus:outline-none focus:border-[#2563eb] transition-colors cursor-pointer"
                   >
-                    <option value="Solid Walnut Dual-Tier Desk Shelf System (₦68,000)">
-                      Solid Walnut Dual-Tier Desk Shelf (₦68,000)
+                    <option value="Direct UK iPhone 16 (128GB / 256GB)">
+                      Direct UK iPhone 16 (128GB / 256GB - All Colors)
                     </option>
-                    <option value="Custom Low-Profile Gasket Mechanical Keyboard (₦52,000)">
-                      Low-Profile Mechanical Keyboard (₦52,000)
+                    <option value="Direct UK iPhone 16 Pro & Pro Max">
+                      Direct UK iPhone 16 Pro & Pro Max (Titanium)
                     </option>
-                    <option value="Asymmetric ScreenBar Halo LED Monitor Light (₦38,500)">
-                      ScreenBar Halo LED Monitor Light (₦38,500)
+                    <option value="Direct UK iPhone 14 Pro (Physical SIM)">
+                      Direct UK iPhone 14 Pro (Physical SIM Tray)
                     </option>
-                    <option value="Heavy-Duty Gas Spring Dual Monitor Arm (₦64,000)">
-                      Heavy-Duty Gas Spring Monitor Arm (₦64,000)
+                    <option value="Direct UK iPhone 14 (128GB / 256GB)">
+                      Direct UK iPhone 14 (Purple / Blue / Starlight)
                     </option>
-                    <option value="3-in-1 Fast MagSafe Charging Station (₦34,000)">
-                      3-in-1 Fast MagSafe Charging Station (₦34,000)
+                    <option value="Restocked Direct UK iPhone 13">
+                      Restocked Direct UK iPhone 13 (Midnight / Green)
                     </option>
-                    <option value="140W GaN Pro Multi-Port PD3.1 Charger (₦42,000)">
-                      140W GaN Pro Multi-Port Charger (₦42,000)
+                    <option value="Direct UK iPhone 12 (Non-Boosted Battery)">
+                      Direct UK iPhone 12 (Non-Boosted Battery Guaranteed)
                     </option>
-                    <option value="Merino Wool Felt & Leather Large Desk Mat (₦18,500)">
-                      Merino Wool Felt & Leather Desk Mat (₦18,500)
+                    <option value="Samsung Galaxy S21 & S21+ 5G">
+                      Samsung Galaxy S21 / S21+ 5G (Dual SIM)
                     </option>
-                    <option value="Precision Master Ergonomic Silent Wireless Mouse (₦45,000)">
-                      Ergonomic Silent Wireless Mouse (₦45,000)
+                    <option value="Sony PlayStation 5 Slim (2-Pads + FC Games Bundle)">
+                      Sony PlayStation 5 Slim (2-Pads + FC Bundle)
                     </option>
-                    <option value="Complete Custom Minimalist Setup Consultation">
-                      Full Custom Minimalist Setup Consultation
+                    <option value="Dell XPS 13 Plus 9320 Ultra-Slim">
+                      Dell XPS 13 Plus 9320 (Intel Core i7)
+                    </option>
+                    <option value="HP EliteBook 840 G5 Business Laptop">
+                      HP EliteBook 840 G5 (USA Used • Core i5 / 8GB)
+                    </option>
+                    <option value="Direct UK Apple iPad 10th Gen">
+                      Direct UK Apple iPad 10th Gen (10.9" Liquid Retina)
+                    </option>
+                    <option value="Apple Watch Series SE (44mm)">
+                      Apple Watch Series SE (44mm Aluminium)
+                    </option>
+                    <option value="Swavy_shots Photography Session (Portraits / Studio / Lifestyle)">
+                      Swavy_shots Photography Session Booking
+                    </option>
+                    <option value="Bulk Wholesale Order or Device Swap Consultation">
+                      Bulk Wholesale Order or Device Swap Consultation
                     </option>
                   </select>
                 </div>

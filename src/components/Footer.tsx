@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
               About Swavy Gadget
             </h4>
             <p className="text-xs sm:text-sm text-white/70 leading-relaxed max-w-sm mb-4">
-              Curating high-quality tech accessories and minimalist desktop workspaces. Engineered for deep work, ergonomics, and aesthetic purity.
+              Curating direct UK smartphones, high-performance laptops, gaming gear, and capturing visual stories through the lens with Swavy_shots photography.
             </p>
             <div className="flex items-center gap-2 text-xs font-mono text-[#25D366]">
               <span className="w-2 h-2 rounded-full bg-[#25D366] animate-ping" />
@@ -126,6 +126,7 @@ export const Footer: React.FC = () => {
             <a href="#about" className="hover:text-white transition-colors">About</a>
             <a href="#showcase" className="hover:text-white transition-colors">Showcase</a>
             <a href="#catalogue" className="hover:text-white transition-colors">Catalogue</a>
+            <a href="#swavy-shots" className="text-[#38bdf8] hover:text-white transition-colors font-bold">Swavy_shots</a>
             <a href="#locations" className="hover:text-white transition-colors">Locations</a>
             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           </div>

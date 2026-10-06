@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { Menu, X, ArrowUpRight, SlidersHorizontal, MapPin, Sparkles, Smartphone } from 'lucide-react';
+import { Menu, X, ArrowUpRight, SlidersHorizontal, MapPin, Sparkles, Smartphone, Camera, Search } from 'lucide-react';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  onOpenSearch?: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -49,6 +53,13 @@ export const Header: React.FC = () => {
             Catalogue
           </a>
           <a
+            href="#swavy-shots"
+            className="text-[#38bdf8] hover:text-white text-xs font-bold uppercase tracking-[0.18em] transition-colors flex items-center gap-1.5"
+          >
+            <Camera size={13} className="text-[#38bdf8]" />
+            <span>Swavy_shots</span>
+          </a>
+          <a
             href="#locations"
             className="text-white/80 hover:text-[#38bdf8] text-xs font-semibold uppercase tracking-[0.18em] transition-colors"
           >
@@ -64,13 +75,28 @@ export const Header: React.FC = () => {
 
         {/* Right Action Button & Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-2.5">
+          {/* Quick Search Button */}
+          <button
+            type="button"
+            id="header-search-btn"
+            onClick={onOpenSearch}
+            aria-label="Search tech catalogue (Press ⌘K or /)"
+            className="bg-white hover:bg-[#2563eb] hover:text-white text-[#0f172a] text-xs font-bold uppercase tracking-wider px-3 sm:px-4 py-2.5 rounded-full border-2 border-black shadow-xs transition-all duration-200 inline-flex items-center gap-1.5 cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:outline-none"
+          >
+            <Search size={14} className="stroke-[2.5]" />
+            <span className="hidden sm:inline">Search</span>
+            <kbd className="hidden md:inline font-mono text-[9px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded border border-slate-300">
+              ⌘K
+            </kbd>
+          </button>
+
           <div className="hidden lg:flex items-center gap-1.5 bg-black/5 border border-black/10 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold text-slate-700">
             <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
             <span>ABEOKUTA & LAGOS HUBS</span>
           </div>
 
           <a
-            href="https://wa.me/2349063192326?text=Hello%20Swavy%20Gadget%2C%20I%20am%20interested%20in%20upgrading%20my%20tech%20setup."
+            href="https://wa.me/2349063192326?text=Hello%20Swavy%20Gadget%2C%20I%20am%20interested%20in%20direct%20UK%20gadgets%20and%20negotiating%20prices."
             target="_blank"
             rel="noopener noreferrer"
             id="header-whatsapp-cta"
@@ -139,6 +165,25 @@ export const Header: React.FC = () => {
               </span>
             </div>
 
+            {/* Quick Search Shortcut in Mobile Drawer */}
+            <button
+              type="button"
+              id="mobile-drawer-search-btn"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenSearch?.();
+              }}
+              className="w-full text-left font-bold text-xs text-[#0f172a] uppercase tracking-wider min-h-[44px] py-2.5 px-3 rounded-xl bg-blue-50 border-2 border-black hover:bg-[#2563eb] hover:text-white transition-all flex items-center justify-between group my-1 shadow-2xs cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:outline-none"
+            >
+              <div className="flex items-center gap-2">
+                <Search size={16} className="text-[#2563eb] group-hover:text-white transition-colors" />
+                <span>Search Products</span>
+              </div>
+              <span className="text-[10px] font-mono bg-white group-hover:bg-black/20 text-[#2563eb] group-hover:text-white px-2 py-0.5 rounded-md font-bold border border-[#2563eb]/30">
+                16 Stock
+              </span>
+            </button>
+
             <a
               href="#about"
               id="mobile-link-about"
@@ -165,8 +210,23 @@ export const Header: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="font-bold text-xs text-[#0f172a] uppercase tracking-wider min-h-[44px] py-2.5 px-3 rounded-xl hover:bg-[#2563eb] hover:text-white transition-all flex items-center justify-between group"
             >
-              <span>Tech Accessories Catalogue</span>
+              <span>Gadgets & Devices Catalogue</span>
               <ArrowUpRight size={16} className="text-[#2563eb] group-hover:text-white transition-colors" />
+            </a>
+
+            <a
+              href="#swavy-shots"
+              id="mobile-link-swavy-shots"
+              onClick={() => setMobileMenuOpen(false)}
+              className="font-bold text-xs text-[#0f172a] uppercase tracking-wider min-h-[44px] py-2.5 px-3 rounded-xl hover:bg-[#2563eb] hover:text-white transition-all flex items-center justify-between group bg-[#2563eb]/5 border border-[#2563eb]/20"
+            >
+              <span className="flex items-center gap-2">
+                <Camera size={16} className="text-[#2563eb] group-hover:text-white transition-colors" />
+                <span>Swavy_shots Photography</span>
+              </span>
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#2563eb] text-white">
+                ARCHIVE
+              </span>
             </a>
 
             <a
@@ -191,7 +251,7 @@ export const Header: React.FC = () => {
 
             <div className="pt-2 border-t border-black/10 mt-1 flex flex-col gap-2">
               <a
-                href="https://wa.me/2349063192326?text=Hello%20Swavy%20Gadget%2C%20I%20want%20to%20order%20accessories"
+                href="https://wa.me/2349063192326?text=Hello%20Swavy%20Gadget%2C%20I%20want%20to%20inquire%20about%20devices%20or%20photography%20shoots."
                 target="_blank"
                 rel="noopener noreferrer"
                 id="mobile-drawer-wa-cta"

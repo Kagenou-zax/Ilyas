@@ -5,6 +5,7 @@ import { MarqueeTicker } from './components/MarqueeTicker';
 import { AboutSection } from './components/AboutSection';
 import { ShowcaseCarousel } from './components/ShowcaseCarousel';
 import { ProductsCatalog } from './components/ProductsCatalog';
+import { SwavyShots } from './components/SwavyShots';
 import { LocationsSection } from './components/LocationsSection';
 import { ContactSection } from './components/ContactSection';
 import { LightboxModal } from './components/LightboxModal';
@@ -60,23 +61,65 @@ export default function App() {
     };
   }, []);
 
+  const handleOpenSearch = (initialQuery?: string) => {
+    const el = document.getElementById('catalogue');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    setTimeout(() => {
+      const searchInput = document.getElementById('catalog-search-input') as HTMLInputElement | null;
+      if (searchInput) {
+        searchInput.focus();
+        if (initialQuery) {
+          // Native value setter to ensure React state updates if controlled
+          const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+            window.HTMLInputElement.prototype,
+            'value'
+          )?.set;
+          nativeInputValueSetter?.call(searchInput, initialQuery);
+          searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+        } else {
+          searchInput.select();
+        }
+      }
+    }, 250);
+  };
+
+  // Accessible global keyboard shortcut listener: Cmd/Ctrl + K or '/'
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      const isInput =
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable);
+
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        handleOpenSearch();
+      } else if (e.key === '/' && !isInput) {
+        e.preventDefault();
+        handleOpenSearch();
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#f5f7fc] text-[#0f172a] flex flex-col selection:bg-[#2563eb] selection:text-white font-sans antialiased">
-      {/* Top Header Navigation */}
-      <Header />
+      {/* Top Header Navigation with Search Trigger */}
+      <Header onOpenSearch={() => handleOpenSearch()} />
 
       {/* Main Content Sections */}
       <main className="grow">
         {/* Hero Section with Checkered Grid & Analog Clock */}
         <Hero
-          onExploreClick={() => {
-            const el = document.getElementById('catalogue');
-            el?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          onSelectProduct={(title) => {
-            const el = document.getElementById('catalogue');
-            el?.scrollIntoView({ behavior: 'smooth' });
-          }}
+          onExploreClick={() => handleOpenSearch()}
+          onSelectProduct={(title) => handleOpenSearch(title)}
         />
 
         {/* High-Energy Typography Marquee Ticker */}
@@ -90,6 +133,9 @@ export default function App() {
 
         {/* Products & Tech Accessories Catalogue */}
         <ProductsCatalog onSelectProduct={(prod) => setActiveModalItem(prod)} />
+
+        {/* Swavy_shots: Photography Archive By The Founder */}
+        <SwavyShots />
 
         {/* Store Locations Hub: Abeokuta & Computer Village */}
         <LocationsSection />
@@ -110,7 +156,7 @@ export default function App() {
       {/* Floating Sticky Quick Action: WhatsApp Button */}
       <div className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2">
         <a
-          href="https://wa.me/2349063192326?text=Hello%20Swavy%20Gadget%2C%20I%20want%20to%20inquire%20about%20tech%20accessories%20and%20desk%20setups."
+          href="https://wa.me/2349063192326?text=Hello%20Swavy%20Gadget%2C%20I%20want%20to%20inquire%20about%20gadgets%2C%20prices%20or%20photography%20shoots."
           target="_blank"
           rel="noopener noreferrer"
           className="group bg-[#25D366] hover:bg-black hover:text-white text-white border-2 border-black font-black text-xs uppercase tracking-wider py-3 px-4 sm:px-5 rounded-full shadow-2xl flex items-center gap-2.5 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"

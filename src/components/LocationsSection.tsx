@@ -20,7 +20,7 @@ export const LocationsSection: React.FC = () => {
               SHOWROOM HUBS.
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl font-medium mt-2">
-              Visit our physical spaces to test mechanical key switches, see solid walnut desk setups in person, or pick up your orders instantly with zero wait times.
+              Visit our physical hubs in Abeokuta (near FUNAAB) or Ikeja Computer Village to test smartphones, inspect laptops & consoles, or discuss photography sessions in person.
             </p>
           </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnalogClock } from './AnalogClock';
-import { ArrowUpRight, Sparkles, Monitor, Keyboard, MousePointer, ShieldCheck, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Monitor, Keyboard, MousePointer, ShieldCheck, ChevronRight, Camera, Smartphone } from 'lucide-react';
 
 interface HeroProps {
   onExploreClick?: () => void;
@@ -48,18 +48,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onSelectProduct }) =
               {/* Category Subtitle Pill */}
               <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-[0.16em] sm:tracking-[0.22em] mb-2 sm:mb-4 flex-wrap">
                 <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center -rotate-6 shadow-2xs">
-                  <Monitor size={12} className="stroke-[2.5]" />
+                  <Smartphone size={12} className="stroke-[2.5]" />
                 </div>
-                <span>Minimalist Desktops</span>
+                <span>Direct UK Gadgets</span>
                 <span className="text-[#2563eb]">•</span>
-                <span>Tech Accessories</span>
+                <span>Flagship Phones</span>
                 <span className="text-[#2563eb]">•</span>
-                <span>Ergonomic Setup</span>
-                <span className="text-[#2563eb]">•</span>
-                <span className="inline-flex items-center gap-1 text-[#2563eb] font-mono font-bold bg-[#2563eb]/10 px-2 py-0.5 rounded-md border border-[#2563eb]/20 text-[10px] sm:text-[11px] tracking-normal">
-                  <Sparkles size={11} />
-                  <span>Original Studio Gear</span>
-                </span>
+                <a href="#swavy-shots" className="inline-flex items-center gap-1 text-[#2563eb] font-mono font-bold bg-[#2563eb]/10 px-2 py-0.5 rounded-md border border-[#2563eb]/20 text-[10px] sm:text-[11px] tracking-normal hover:bg-[#2563eb] hover:text-white transition-colors">
+                  <Camera size={11} />
+                  <span>Swavy_shots</span>
+                </a>
               </div>
 
               {/* Giant 3-Line Bebas Display Typography */}
@@ -204,26 +202,27 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onSelectProduct }) =
               </div>
 
               <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-medium mb-3">
-                We supply aesthetic tech accessories, bespoke desk shelves, and ergonomic peripherals. Pick up physically at our Abeokuta & Lagos stores or order with swift nationwide dispatch.
+                Direct UK iPhones, Samsung Galaxy, laptops, gaming gear & visual storytelling with Swavy_shots photography. All gadget prices negotiated directly on WhatsApp.
               </p>
 
               <div className="flex items-center justify-between gap-2 pt-0.5">
                 <div className="flex items-center gap-1.5">
                   <div
                     className="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center shadow-xs cursor-pointer hover:bg-[#2563eb] transition-colors"
-                    title="Minimalist Desktops"
+                    title="Direct UK Smartphones"
                   >
-                    <Monitor size={13} />
+                    <Smartphone size={13} />
                   </div>
-                  <div
-                    className="w-7 h-7 rounded-full bg-[#2563eb] text-white flex items-center justify-center shadow-xs cursor-pointer hover:bg-[#7c3aed] transition-colors"
-                    title="Keyboards & Gear"
+                  <a
+                    href="#swavy-shots"
+                    className="w-7 h-7 rounded-full bg-[#2563eb] text-white flex items-center justify-center shadow-xs cursor-pointer hover:bg-black transition-colors"
+                    title="Swavy_shots Photography"
                   >
-                    <Keyboard size={13} />
-                  </div>
+                    <Camera size={13} />
+                  </a>
                   <div
                     className="w-7 h-7 rounded-full bg-gradient-to-br from-[#2563eb] to-[#7c3aed] text-white border border-black flex items-center justify-center shadow-xs cursor-pointer hover:scale-105 transition-transform"
-                    title="100% Genuine Quality"
+                    title="100% Genuine Tested Stock"
                   >
                     <ShieldCheck size={13} />
                   </div>
@@ -231,11 +230,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onSelectProduct }) =
 
                 <div className="flex items-center gap-2">
                   <a
-                    href="#showcase"
-                    className="bg-black hover:bg-[#2563eb] hover:text-white text-white text-[11px] font-bold px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm transition-colors cursor-pointer"
+                    href="#catalogue"
+                    className="bg-black hover:bg-[#2563eb] hover:text-white text-white text-[11px] font-bold px-3.5 py-1.5 rounded-full flex items-center gap-1 shadow-sm transition-colors cursor-pointer"
                   >
-                    <span>Explore</span>
+                    <span>Stock</span>
                     <ChevronRight size={13} className="stroke-[3]" />
+                  </a>
+                  <a
+                    href="#swavy-shots"
+                    className="bg-[#2563eb]/10 hover:bg-[#2563eb] text-[#2563eb] hover:text-white border border-[#2563eb]/30 text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1 transition-colors cursor-pointer"
+                  >
+                    <span>Shots</span>
+                    <Camera size={11} />
                   </a>
                 </div>
               </div>
