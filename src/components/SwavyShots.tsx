@@ -1,84 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, X, ChevronLeft, ChevronRight, Maximize2, Upload, Check } from 'lucide-react';
+import { Camera, X, ChevronLeft, ChevronRight, Maximize2, Sparkles, ShieldCheck } from 'lucide-react';
 import { SwavyShot } from '../types';
 import { SWAVY_SHOTS_DATA } from '../data/shots';
-import { ManageShotsModal } from './ManageShotsModal';
-import { loadCustomShots, saveCustomShots, clearCustomShots } from '../utils/shotsStorage';
 import { sanitizeShot } from '../utils/shotNamer';
+import { clearCustomShots } from '../utils/shotsStorage';
 
 export const SwavyShots: React.FC = () => {
-  const [shots, setShots] = useState<SwavyShot[]>(SWAVY_SHOTS_DATA);
+  // Permanently locked exhibition gallery bound strictly to the 11 curated shots
+  const [shots] = useState<SwavyShot[]>(SWAVY_SHOTS_DATA);
   const [failedImageIds, setFailedImageIds] = useState<Set<string>>(new Set());
   const [activeShotIndex, setActiveShotIndex] = useState<number | null>(null);
-  const [isManageModalOpen, setIsManageModalOpen] = useState(false);
-  const [isCustomLoaded, setIsCustomLoaded] = useState(false);
 
-  // Load custom shots saved by user if any and migrate legacy default titles
+  // Clear any legacy custom shots from storage to guarantee immunity to external overrides
   useEffect(() => {
-    loadCustomShots().then((custom) => {
-      if (custom && custom.length > 0) {
-        const legacyDefaultMap: Record<string, { title: string; filename: string; caption: string }> = {
-          'Studio Portrait in Warm Sunlight': {
-            title: 'The Magenta Silk Wrap & Pleated Gele',
-            filename: 'look_01_magenta_silk_satin_pleated_gele.jpg',
-            caption: 'Lustrous magenta silk-satin wrap dress complemented by an architectural pleated gele headpiece, accented with warm ambient studio lighting.'
-          },
-          'Urban Rhythm: Marina Sunset Dusk': {
-            title: 'Embroidered Royal Agbada & Coral Beads',
-            filename: 'look_02_embroidered_agbada_coral_beads.jpg',
-            caption: 'Hand-embroidered emerald agbada robe paired with authentic multi-strand royal coral beads and a matching velvet fila cap.'
-          },
-          'High-Key Studio Portrait': {
-            title: 'Cream Ribbed Knit Turtleneck & Gold Hoops',
-            filename: 'look_03_cream_ribbed_knit_turtleneck_hoops.jpg',
-            caption: 'Sculptural high-neck cream ribbed knit pullover styled with polished gold hoop earrings and radiant high-key rim falloff.'
-          },
-          'Outdoor Ambient Natural Light': {
-            title: 'Crisp White Linen Button-Down & Spread Collar',
-            filename: 'look_04_crisp_white_linen_spread_collar.jpg',
-            caption: 'Breathable open-weave pure white linen shirt with a relaxed spread collar, styled effortlessly under natural afternoon canopy.'
-          },
-          'Afro-Modernist Elegance': {
-            title: 'Sleeveless Sculpted Scoop Top & Brushed Brass',
-            filename: 'look_05_sleeveless_sculpted_scoop_brass.jpg',
-            caption: 'Minimalist chocolate-toned sleeveless scoop-neck top paired with geometric brushed brass drop earrings and deep tonal richness.'
-          },
-          'Candid Street Documentary': {
-            title: 'Vintage Stonewash Denim Trucker & Layered Tee',
-            filename: 'look_06_vintage_stonewash_denim_trucker.jpg',
-            caption: 'Relaxed vintage-wash denim trucker jacket layered over a crisp cotton base with loose city streetwear tailoring.'
-          },
-          'Sculptural Studio Shadows': {
-            title: 'Midnight Black Fitted Crewneck & Sculptural Form',
-            filename: 'look_07_midnight_black_fitted_crewneck.jpg',
-            caption: 'Form-fitting premium midnight black cotton crewneck tee highlighting clean collar lines and stark directional shadows.'
-          },
-          'Golden Glow Editorial': {
-            title: 'Oversized Shearling Aviator Jacket & Gold Accents',
-            filename: 'look_08_oversized_shearling_aviator_jacket.jpg',
-            caption: 'Textured heavyweight shearling-lined aviator jacket styled with polished gold hoops and golden-hour cinematic glow.'
-          }
-        };
-
-        const migrated = custom.map((s, idx) => {
-          if (legacyDefaultMap[s.title]) {
-            return sanitizeShot({
-              ...s,
-              title: legacyDefaultMap[s.title].title,
-              filename: legacyDefaultMap[s.title].filename,
-              caption: legacyDefaultMap[s.title].caption
-            }, idx);
-          }
-          return sanitizeShot(s, idx);
-        });
-
-        setShots(migrated);
-        setIsCustomLoaded(true);
-      }
-    });
+    clearCustomShots().catch(() => {});
   }, []);
 
-  // Filter out any frames that have no image or failed to load, clean titles, and dynamically renumber them
+  // Filter out any frames that fail to load, clean titles, and dynamically renumber sequentially
   const visibleShots = shots
     .filter((shot) => !failedImageIds.has(shot.id) && shot.image && shot.image.trim() !== '')
     .map((shot, idx) => sanitizeShot(shot, idx));
@@ -95,20 +33,6 @@ export const SwavyShots: React.FC = () => {
     if (activeShotIndex !== null && visibleShots.length > 0) {
       setActiveShotIndex((prev) => (prev! - 1 + visibleShots.length) % visibleShots.length);
     }
-  };
-
-  const handleSaveShots = async (updatedShots: SwavyShot[]) => {
-    setShots(updatedShots);
-    setFailedImageIds(new Set());
-    setIsCustomLoaded(true);
-    await saveCustomShots(updatedShots);
-  };
-
-  const handleResetShots = async () => {
-    await clearCustomShots();
-    setShots(SWAVY_SHOTS_DATA);
-    setFailedImageIds(new Set());
-    setIsCustomLoaded(false);
   };
 
   useEffect(() => {
@@ -143,7 +67,7 @@ export const SwavyShots: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase mb-4">
               <Camera size={14} className="text-[#38bdf8]" />
-              <span>PHOTOGRAPHY ARCHIVE • RAW CAPTURES</span>
+              <span>PHOTOGRAPHY ARCHIVE • PERMANENT EXHIBITION</span>
             </div>
 
             <h2 className="font-condensed text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight text-white leading-[0.88]">
@@ -151,40 +75,25 @@ export const SwavyShots: React.FC = () => {
             </h2>
 
             <p className="text-slate-400 text-xs sm:text-sm md:text-base max-w-2xl mt-4 font-normal leading-relaxed">
-              Raw, unedited photographic works captured through the lens of Swavy. Curated exhibition of portraiture, street documentary, and authentic cultural elegance.
+              Curated photographic exhibition of authentic cultural attire, modern Nigerian silhouettes, and editorial portraiture captured exclusively through the lens of Swavy.
             </p>
           </div>
 
-          {/* Owner Self-Input Actions */}
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <button
-              type="button"
-              id="upload-manage-shots-btn"
-              onClick={() => setIsManageModalOpen(true)}
-              className="bg-white hover:bg-[#38bdf8] text-black font-mono font-bold text-xs uppercase tracking-wider px-4 sm:px-5 py-3 rounded-2xl flex items-center gap-2 border border-white/20 shadow-lg transition-all active:scale-95 cursor-pointer"
-            >
-              <Upload size={15} />
-              <span>Input & Manage Shots</span>
-              <span className="bg-black text-white px-2 py-0.5 rounded-md text-[10px]">
-                {visibleShots.length}
+          {/* Exhibition Status Badge (Locked & Curated) */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            <div className="flex items-center gap-2 font-mono text-xs text-white/90 bg-white/5 border border-white/15 px-4 py-2.5 rounded-2xl">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse" />
+              <span className="font-bold tracking-wider">{visibleShots.length} CURATED LOOKS</span>
+              <span className="text-white/40">•</span>
+              <span className="text-[11px] text-slate-400 flex items-center gap-1 font-sans">
+                <ShieldCheck size={13} className="text-[#38bdf8]" />
+                Permanent Archive
               </span>
-            </button>
-
-            {isCustomLoaded ? (
-              <span className="text-[11px] font-mono text-[#25D366] bg-[#25D366]/10 border border-[#25D366]/30 px-3 py-1.5 rounded-xl flex items-center gap-1.5">
-                <Check size={12} className="stroke-[3]" />
-                <span>Custom Photos Active</span>
-              </span>
-            ) : (
-              <div className="flex items-center gap-2 font-mono text-xs text-white/60 bg-white/5 border border-white/10 px-4 py-2.5 rounded-2xl shrink-0">
-                <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
-                <span>{visibleShots.length} RAW FRAMES</span>
-              </div>
-            )}
+            </div>
           </div>
         </div>
 
-        {/* Dynamic Photographs Gallery Grid: Only frames with valid images */}
+        {/* Dynamic Photographs Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6" data-reveal>
           {visibleShots.map((shot, index) => (
             <div
@@ -200,7 +109,7 @@ export const SwavyShots: React.FC = () => {
                   loading="lazy"
                   decoding="async"
                   onError={() => {
-                    // Instantly remove frames that fail to load
+                    // Remove frame if image cannot load
                     setFailedImageIds((prev) => new Set(prev).add(shot.id));
                   }}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-104"
@@ -248,17 +157,10 @@ export const SwavyShots: React.FC = () => {
         {visibleShots.length === 0 && (
           <div className="text-center py-16 bg-[#0e131d] border border-white/10 rounded-3xl p-8 max-w-md mx-auto">
             <Camera size={32} className="text-white/40 mx-auto mb-3" />
-            <h3 className="font-bold text-lg text-white mb-1">No Frames Available</h3>
-            <p className="text-xs text-slate-400 mb-4">
-              Add your raw photographs using the button above to populate the exhibition.
+            <h3 className="font-bold text-lg text-white mb-1">Archived Collection Loading</h3>
+            <p className="text-xs text-slate-400">
+              Retrieving high-resolution photographic captures...
             </p>
-            <button
-              type="button"
-              onClick={() => setIsManageModalOpen(true)}
-              className="bg-white text-black font-mono font-bold text-xs uppercase px-5 py-2.5 rounded-xl cursor-pointer hover:bg-[#38bdf8]"
-            >
-              Upload Photos
-            </button>
           </div>
         )}
       </div>
@@ -342,15 +244,6 @@ export const SwavyShots: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Owner Photo Management Modal */}
-      <ManageShotsModal
-        shots={visibleShots}
-        isOpen={isManageModalOpen}
-        onClose={() => setIsManageModalOpen(false)}
-        onSave={handleSaveShots}
-        onReset={handleResetShots}
-      />
     </section>
   );
 };

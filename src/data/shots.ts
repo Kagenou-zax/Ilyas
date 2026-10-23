@@ -4,65 +4,89 @@ export const SWAVY_SHOTS_DATA: SwavyShot[] = [
   {
     id: 'swavy-shot-01',
     serial: '01',
-    title: 'The Magenta Silk Wrap & Pleated Gele',
-    filename: 'look_01_magenta_silk_satin_pleated_gele.jpg',
-    image: '/images/swavy_shots_portrait_1791198240501.jpg',
-    caption: 'Lustrous magenta silk-satin wrap dress complemented by an architectural pleated gele headpiece, accented with warm ambient studio lighting.'
+    title: 'Crimson Floral Wrap Dress & Tied Shoulder Accents',
+    filename: 'look_01_crimson_floral_wrap_dress.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.07_6509dd09.jpeg',
+    caption: 'Vibrant crimson floral v-neck cocktail wrap dress with delicate tie-shoulder accents, styled with crystal-embellished stiletto sandals.'
   },
   {
     id: 'swavy-shot-02',
     serial: '02',
-    title: 'Embroidered Royal Agbada & Coral Beads',
-    filename: 'look_02_embroidered_agbada_coral_beads.jpg',
-    image: '/images/swavy_shots_lifestyle_1791198255384.jpg',
-    caption: 'Hand-embroidered emerald agbada robe paired with authentic multi-strand royal coral beads and a matching velvet fila cap.'
+    title: 'Royal Black Embroidered Agbada & Coral Beads',
+    filename: 'look_02_royal_black_embroidered_agbada.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.09_f922eefa.jpeg',
+    caption: 'Intricately embroidered black and silver royal Agbada paired with multi-strand authentic coral beads and a patterned velvet fila cap.'
   },
   {
     id: 'swavy-shot-03',
     serial: '03',
-    title: 'Cream Ribbed Knit Turtleneck & Gold Hoops',
-    filename: 'look_03_cream_ribbed_knit_turtleneck_hoops.jpg',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80',
-    caption: 'Sculptural high-neck cream ribbed knit pullover styled with polished gold hoop earrings and radiant high-key rim falloff.'
+    title: 'Earthy Floral Smocked Co-ord & Braided Crown',
+    filename: 'look_03_earthy_floral_coord_set.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.11_39968ef2.jpeg',
+    caption: 'Warm earth-toned floral print button-down shirt and skirt co-ord set captured in natural daylight afternoon shadows.'
   },
   {
     id: 'swavy-shot-04',
     serial: '04',
-    title: 'Crisp White Linen Button-Down & Spread Collar',
-    filename: 'look_04_crisp_white_linen_spread_collar.jpg',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80',
-    caption: 'Breathable open-weave pure white linen shirt with a relaxed spread collar, styled effortlessly under natural afternoon canopy.'
+    title: 'Bubblegum Ribbed Cutout Top & Dainty Studs',
+    filename: 'look_04_bubblegum_ribbed_cutout_top.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.12_f50040d9.jpeg',
+    caption: 'Form-fitting bubblegum pink ribbed long-sleeve knit featuring keyhole button cutouts and delicate silver stud earrings.'
   },
   {
     id: 'swavy-shot-05',
     serial: '05',
-    title: 'Sleeveless Sculpted Scoop Top & Brushed Brass',
-    filename: 'look_05_sleeveless_sculpted_scoop_brass.jpg',
-    image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1000&q=80',
-    caption: 'Minimalist chocolate-toned sleeveless scoop-neck top paired with geometric brushed brass drop earrings and deep tonal richness.'
+    title: 'Terracotta Cord Lace & Purple Gele Trio',
+    filename: 'look_05_terracotta_cord_lace_gele_trio.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.17_d9e96a12.jpeg',
+    caption: 'Ceremonial trio in matching burnt-orange corded lace dresses, layered coral bead necklaces, and sculpted purple gele crowns.'
   },
   {
     id: 'swavy-shot-06',
     serial: '06',
-    title: 'Vintage Stonewash Denim Trucker & Layered Tee',
-    filename: 'look_06_vintage_stonewash_denim_trucker.jpg',
-    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=80',
-    caption: 'Relaxed vintage-wash denim trucker jacket layered over a crisp cotton base with loose city streetwear tailoring.'
+    title: 'Monochrome Open-Back Halter & Waterfall Fringe',
+    filename: 'look_06_monochrome_open_back_halter.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.17__1__df02e180.jpeg',
+    caption: 'Dramatic black-and-white silhouette highlighting a textured backless halter top, braided ponytail, and cascading rhinestone earrings.'
   },
   {
     id: 'swavy-shot-07',
     serial: '07',
-    title: 'Midnight Black Fitted Crewneck & Sculptural Form',
-    filename: 'look_07_midnight_black_fitted_crewneck.jpg',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=80',
-    caption: 'Form-fitting premium midnight black cotton crewneck tee highlighting clean collar lines and stark directional shadows.'
+    title: 'Indigo-Striped Aso-Oke Agbada & Modern Shades',
+    filename: 'look_07_indigo_striped_asooke_agbada.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.18_97056234.jpeg',
+    caption: 'Regal purple-and-white striped handwoven Aso-Oke agbada with matching fila cap, modern sunglasses, and dark bead necklace.'
   },
   {
     id: 'swavy-shot-08',
     serial: '08',
-    title: 'Oversized Shearling Aviator Jacket & Gold Accents',
-    filename: 'look_08_oversized_shearling_aviator_jacket.jpg',
-    image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80',
-    caption: 'Textured heavyweight shearling-lined aviator jacket styled with polished gold hoops and golden-hour cinematic glow.'
+    title: 'Handwoven Metallic Aso-Oke Sash Adjustment',
+    filename: 'look_08_handwoven_metallic_asooke_sash.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.18__1__c148628f.jpeg',
+    caption: 'Candid styling moment adjusting a metallic-striped ceremonial Aso-Oke sash draped gracefully over a magenta silk buba.'
+  },
+  {
+    id: 'swavy-shot-09',
+    serial: '09',
+    title: 'Magenta Silk Satin Buba & Striped Aso-Oke',
+    filename: 'look_09_magenta_silk_satin_asooke.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.19_67ee252d.jpeg',
+    caption: 'Rich magenta silk-satin top paired with a coordinating striped Aso-Oke sash, matching gele headpiece, and gold chevron necklace.'
+  },
+  {
+    id: 'swavy-shot-10',
+    serial: '10',
+    title: 'Studio Ring-Light Portrait & Pleated Gele',
+    filename: 'look_10_studio_ringlight_pleated_gele.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.19__1__98c692b6.jpeg',
+    caption: 'Studio editorial capture framing vibrant magenta silk attire, sculpted striped gele, and polished gold necklace inside a ring-light halo.'
+  },
+  {
+    id: 'swavy-shot-11',
+    serial: '11',
+    title: 'Executive Mustard Shirt & Patterned Silk Tie',
+    filename: 'look_11_executive_mustard_shirt_silk_tie.jpg',
+    image: '/assets/aistudio/WhatsApp_Image_2026-10-23_at_15.21.20_f5657b93.jpeg',
+    caption: 'Sharp menswear portrait featuring a tailored mustard-yellow dress shirt, navy cross-embroidered tie, and tailored charcoal slacks.'
   }
 ];
